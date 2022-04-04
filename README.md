@@ -14,11 +14,11 @@ others too.
 ## Installation
 
 First clone the repo and symlink the python module into your weechat
-directory:
+autoload directory:
 
 ```shell
 $ git clone https://github.com/darkrenaissance/mallumo
-$ ln -s $(realpath mallumo/mallumo.py) ~/.weechat/python
+$ ln -s $(realpath mallumo/mallumo.py) ~/.weechat/python/autoload/
 ```
 
 With this method, you can receive updates seamlessly, just by issuing
