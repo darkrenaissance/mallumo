@@ -19,8 +19,9 @@ First clone the repo and symlink the python module into your weechat
 autoload directory:
 
 ```shell
+$ cd .local/share/weechat/python/
 $ git clone https://github.com/darkrenaissance/mallumo
-$ ln -s $(realpath mallumo/mallumo.py) ~/.weechat/python/autoload/
+$ ln -s $(realpath mallumo/mallumo/__init__.py) ~/.weechat/python/autoload/mallumo.py
 ```
 
 With this method, you can receive updates seamlessly, just by issuing
@@ -32,12 +33,15 @@ With this method, you can receive updates seamlessly, just by issuing
 In weechat:
 
 ```
-/mallumo help
+/help mallumo
 
 [python/mallumo]  /mallumo  gen
                             kex
                             reset
                             status
+                            enable
+                            disable
+
 
 E2E encryption for private IRC messages
 
@@ -47,10 +51,12 @@ Add an E2E item to the status bar by adding '[mallumo]' to the config setting
 weechat.bar.status.items. This will show if your current chat is encrypted.
 
 Usage:
-/mallumo gen          [ generate a keypair ]
+/mallumo gen          [ generate a new keypair ]
 /mallumo kex          [ initiate an e2e encrypted session ]
 /mallumo reset [-f]   [ unset the public key associated to the current buffer ]
-/mallumo status       [ show session status ]
+/mallumo status       [ show and possibly initialize a session ]
+/mallumo disable      [ disable encryption for current buffer ]
+/mallumo enable       [ enable encryption for current buffer ]
 ```
 
 Before exiting, do run `/save` in order to make sure keep any pubkeys
