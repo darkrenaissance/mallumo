@@ -517,7 +517,7 @@ if wc.register(SCRIPT_NAME, SCRIPT_AUTHOR, SCRIPT_VERSION, SCRIPT_LICENSE,
                                                        "", "", "", "", "", "")
 
     for opt, typ, description, default in [
-        ("debug", "boolean", "script debugging", "on"),
+        ("debug", "boolean", "script debugging", "off"),
         ("secret", "string", "secret key (base64)", ""),
     ]:
         wc.config_new_option(CONFIG_FILE, CONFIG_SECTIONS["general"], opt, typ,
