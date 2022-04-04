@@ -19,9 +19,10 @@ First clone the repo and symlink the python module into your weechat
 autoload directory:
 
 ```shell
-$ cd .local/share/weechat/python/
 $ git clone https://github.com/darkrenaissance/mallumo
-$ ln -s $(realpath mallumo/mallumo/__init__.py) ~/.weechat/python/autoload/mallumo.py
+$ cd ~/.weechat/python
+$ ln -s /path/to/mallumo/mallumo/ # Note this is the inner mallumo dir
+$ ln -s $(realpath mallumo/__init__.py) autoload/mallumo.py
 ```
 
 With this method, you can receive updates seamlessly, just by issuing
