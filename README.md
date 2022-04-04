@@ -51,6 +51,9 @@ Usage:
 /mallumo status       [ show session status ]
 ```
 
+Before exiting, do run `/save` in order to make sure keep any pubkeys
+you have exchanged.
+
 ## License
 
 GNU GPL version 3
