@@ -3,6 +3,8 @@ mallumo
 
 e2e encryption in weechat using libsodium.
 
+![](screenshot.png)
+
 ## Dependencies
 
 * `python-3.8` or newer.
