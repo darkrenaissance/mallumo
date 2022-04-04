@@ -429,6 +429,10 @@ def command_cb(data, buf, args):
 
         command("", f"/unset plugins.var.python.{SCRIPT_NAME}.pubkey_{nick}")
         prnt(buf, f"Public key for {nick} has been unset.")
+
+        SODIUM_BOXES.pop(nick)
+        prnt(buf, f"Box for {nick} has been burned.")
+
         return wc.WEECHAT_RC_OK
 
     if arg_parts[0] == "status":
