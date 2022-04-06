@@ -63,6 +63,41 @@ Usage:
 Before exiting, do run `/save` in order to make sure keep any pubkeys
 you have exchanged.
 
+## Protocol
+
+Basic NaCl box, no ephemeral keys, persistent sessions.
+
+```python
+from base64 import b64encode, b64decode
+from nacl.public import PublicKey, PrivateKey, Box
+
+alice = PrivateKey.generate()
+alice_sessions = {}
+
+bob = PrivateKey.generate()
+bob_sessions = {}
+
+# Key exchange
+alice_pub = f"{b64encode(alice.public_key.encode()).decode()}"
+bob_pub = f"{b64encode(bob.public_key.encode()).decode()}"
+
+send_to_bob(f"?e2e_kexreq:{alice_pub}?")
+
+msg = bob.recv()
+alice_pub = decode_kexeq(msg)
+send_to_alice(f"?e2e_kexrep:{bob_pub}?")
+
+bob_sessions["alice"] = Box(bob, alice_pub)
+
+msg = alice.recv()
+bob_pub = decode_kexrep(msg)
+alice_sessions["bob"] = Box(alice, bob_pub)
+
+enc_msg = alice_sessions["bob"].encrypt("foo")
+send_to_bob(f"?e2e_msg:WW91IGJhc3RhcmQgbG1hby4gQnV5IHRoZSBkaXAhCg==?")
+```
+
+
 ## License
 
 GNU GPL version 3
