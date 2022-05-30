@@ -58,7 +58,12 @@ def message_in_cb(data, modifier, modifier_data, string):
     """Incoming messages callback"""
     debug(("message_in_cb()", data, modifier, modifier_data, string))
 
-    parsed = parse_privmsg(string.encode(), modifier_data)
+    # Weird typing here, lazy to look into.
+    if isinstance(string, bytes):
+        parsed = parse_privmsg(string, modifier_data)
+    else:
+        parsed = parse_privmsg(string.encode(), modifier_data)
+
     debug(json.dumps(parsed))
 
     # If we're in a channel, do nothing more
