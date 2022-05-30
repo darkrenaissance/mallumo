@@ -58,7 +58,7 @@ def message_in_cb(data, modifier, modifier_data, string):
     """Incoming messages callback"""
     debug(("message_in_cb()", data, modifier, modifier_data, string))
 
-    parsed = parse_privmsg(string, modifier_data)
+    parsed = parse_privmsg(string.encode(), modifier_data)
     debug(json.dumps(parsed))
 
     # If we're in a channel, do nothing more
@@ -163,7 +163,7 @@ def message_out_cb(data, modifier, modifier_data, string):
     result = ""
 
     # If any exception is raised in this function, weechat will not send
-    # the outgoing message, which could be somethign that the user intended
+    # the outgoing message, which could be something that the user intended
     # to be encrypted. This paranoid exception handling ensures that the
     # system fails closed and not open.
     try:
