@@ -60,7 +60,10 @@ def message_in_cb(data, modifier, modifier_data, string):
 
     # Weird typing here, lazy to look into.
     if isinstance(string, bytes):
-        parsed = parse_privmsg(string.decode(), modifier_data)
+        try:
+            parsed = parse_privmsg(string.decode(), modifier_data)
+        except UnicodeDecodeError:
+            return string
     else:
         parsed = parse_privmsg(string, modifier_data)
 
